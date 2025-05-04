@@ -22,5 +22,21 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"i:{case}, a:{actual} does not equal e:{expected}")
 
+    def test_1_2(self):
+        cases = [
+            ("abcdddd","aaaabcd"),
+            ("rats", "star"),
+            ("aabbcdd","abcdabd"),
+            ("1234567890","0004567890")
+            ]
+        expected_results = [False, True, True, False]
+        for index, case in enumerate(cases):
+            actual = check_permutation(case[0], case[1])
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"{case}-> a:{actual} does not equal e:{expected}")
+            actual = check_permutation_sorted(case[0], case[1])
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"(SORTED){case}-> a:{actual} does not equal e:{expected}")
+
 if __name__ == '__main__':
     unittest.main()
