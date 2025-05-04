@@ -38,5 +38,24 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"(SORTED){case}-> a:{actual} does not equal e:{expected}")
 
+    def test_1_3(self):
+        cases = [
+            ("abc", 3),
+            ("ab c", 4),
+            ("ab c   ", 4),
+            ("Mr John Smith", 13)
+            ]
+        expected_results = [
+                "abc",
+                'ab%20c',
+                'ab%20c',
+                "Mr%20John%20Smith"
+            ]
+        for index, case in enumerate(cases):
+            actual = urlify(case[0], case[1])
+            expected =  expected_results[index]
+            self.assertEqual(actual, expected, f"{case}, a:{actual} does not equal e:{expected}")
+
+
 if __name__ == '__main__':
     unittest.main()
