@@ -3,6 +3,7 @@ import unittest
 from is_unique.main import is_unique_hash, is_unique_no_hash
 from check_permutation.main import check_permutation, check_permutation_sorted
 from urlify.main import urlify
+from palindrome_permutation.main import palindrome_permutation
 
 class CrackingTests(unittest.TestCase):
 
@@ -55,6 +56,22 @@ class CrackingTests(unittest.TestCase):
             actual = urlify(case[0], case[1])
             expected =  expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a:{actual} does not equal e:{expected}")
+
+    def test_1_4(self):
+        cases = [
+            "Tact Coa",
+            'carr ece',
+            'yoda toy'
+            ]
+        expected_results = [
+            True,
+            True,
+            False
+            ]
+        for index, case in enumerate(cases):
+            actual = palindrome_permutation(case)
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"{case}: a: {actual}, e: {expected}")
 
 
 if __name__ == '__main__':
