@@ -1,9 +1,10 @@
 import unittest
 
-from is_unique.main import is_unique_hash, is_unique_no_hash
-from check_permutation.main import check_permutation, check_permutation_sorted
-from urlify.main import urlify
-from palindrome_permutation.main import palindrome_permutation
+from arrays_and_strings.is_unique.main import is_unique_hash, is_unique_no_hash
+from arrays_and_strings.check_permutation.main import check_permutation, check_permutation_sorted
+from arrays_and_strings.urlify.main import urlify
+from arrays_and_strings.palindrome_permutation.main import palindrome_permutation
+from arrays_and_strings.one_away.main import one_away, replace_test, insert_test
 
 class CrackingTests(unittest.TestCase):
 
@@ -73,6 +74,18 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}: a: {actual}, e: {expected}")
 
+    def test_1_5(self):
+        cases = [
+            ("pale", "ple"),
+            ("pales", "pale"),
+            ("pale", "bale"),
+            ("pale", "bake")
+        ]
+        expected_results = [True, True, True, False]
+        for index, case in enumerate(cases):
+            actual = one_away(case[0], case[1])
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"{case}, a: {actual}, e: {expected}")
 
 if __name__ == '__main__':
     unittest.main()
