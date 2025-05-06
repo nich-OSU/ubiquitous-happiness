@@ -5,6 +5,7 @@ from arrays_and_strings.check_permutation.main import check_permutation, check_p
 from arrays_and_strings.urlify.main import urlify
 from arrays_and_strings.palindrome_permutation.main import palindrome_permutation
 from arrays_and_strings.one_away.main import one_away, replace_test, insert_test
+from arrays_and_strings.string_compression.main import string_compression
 
 class CrackingTests(unittest.TestCase):
 
@@ -86,6 +87,14 @@ class CrackingTests(unittest.TestCase):
             actual = one_away(case[0], case[1])
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a: {actual}, e: {expected}")
+
+    def test_1_6(self):
+        cases = ["aabcccccaaa", "abcdee", "aaabbaaac"]
+        expected_results = ["a2b1c5a3", "abcdee", "a3b2a3c1"]
+        for index, case in enumerate(cases):
+            actual = string_compression(case)
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"{case}, a:{actual}, e:{expected}")
 
 if __name__ == '__main__':
     unittest.main()
