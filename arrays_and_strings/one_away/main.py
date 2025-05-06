@@ -50,20 +50,29 @@ def replace_test(s1: str, s2: str) -> bool:
     return True
 
 def one_away(s1: str, s2: str) -> bool:
+    """
+    Function will use helper functions to determine whether input strings are one edit away
+    From each other.
+    Return True if they are one edit away or false if more than one.
+    """
     # check length difference is one or zero
     l1 = len(s1)
     l2 = len(s2)
     if abs(l1 - l2) > 1:
         return False
+    # prepare strings for helper functions, find which is longer.
     longer = s1
     shorter = s2
+    # if different:
     if l2 > l1:
         longer = s2
         shorter = s1
 
+    # if they are the same length, we will check replacement viability
     if l1 == l2:
         return replace_test(s1, s2)
 
+    # otherwise, check for insertion
     else:
         return insert_test(shorter, longer)
 
