@@ -6,6 +6,7 @@ from arrays_and_strings.urlify.main import urlify
 from arrays_and_strings.palindrome_permutation.main import palindrome_permutation
 from arrays_and_strings.one_away.main import one_away, replace_test, insert_test
 from arrays_and_strings.string_compression.main import string_compression
+from arrays_and_strings.rotate_matrix.main import rotate_matrix
 
 class CrackingTests(unittest.TestCase):
 
@@ -95,6 +96,43 @@ class CrackingTests(unittest.TestCase):
             actual = string_compression(case)
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a:{actual}, e:{expected}")
+
+    def test_1_7(self):
+        cases = [
+            [[1, 2],
+            [3, 4]],
+            [[0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]],
+            [],
+            [[1, 2, 3], [3]],
+            [["a", "b", "c"],
+            ["d", "e", "f"],
+            ['g', 'h', 'i']]
+            ]
+        expected_results = [
+            [[3, 1],
+            [4, 2]],
+            [[6, 3, 0],
+            [7, 4, 1],
+            [8, 5, 2]],
+            False,
+            False,
+            [["g", "d", "a"],
+            ["h", "e", "b"],
+            ['i', 'f', 'c']]
+            ]
+        for index, case in enumerate(cases):
+            actual = rotate_matrix(case)
+            expected = expected_results[index]
+            if not expected:
+                self.assertFalse(actual, f"{index} test failed -> e:{expected} and actual: {actual}")
+            else:
+                for i, row in enumerate(actual):
+                    for j, column in enumerate(row):
+                        self.assertEqual(column, expected[i][j], f"column in row of actual = {actual[i][j]} not expected: {expected[i][j]}")
+
+
 
 if __name__ == '__main__':
     unittest.main()
