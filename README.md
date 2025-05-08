@@ -9,4 +9,6 @@ Problems conducted thus far:
 - One Away
 - String Compression
 - Rotate Matrix
+- Zero Matrix
+- Is Substring
 # leet code problem solving

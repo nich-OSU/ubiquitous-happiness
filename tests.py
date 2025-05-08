@@ -7,6 +7,8 @@ from arrays_and_strings.palindrome_permutation.main import palindrome_permutatio
 from arrays_and_strings.one_away.main import one_away, replace_test, insert_test
 from arrays_and_strings.string_compression.main import string_compression
 from arrays_and_strings.rotate_matrix.main import rotate_matrix
+from arrays_and_strings.zero_matrix.main import zero_matrix
+from arrays_and_strings.isSubstring.main import isSubstring
 
 class CrackingTests(unittest.TestCase):
 
@@ -18,7 +20,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"i:{case}, a:{actual} does not equal e:{expected}")
 
-    def test_1_1_no_hash(self):
+    def test_1_2_no_hash(self):
         cases = ["abc", "aabbcc", "abca", "abcdprstp"]
         expected_results = [True, False, False, False]
         for index, case in enumerate(cases):
@@ -26,7 +28,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"i:{case}, a:{actual} does not equal e:{expected}")
 
-    def test_1_2(self):
+    def test_1_3(self):
         cases = [
             ("abcdddd","aaaabcd"),
             ("rats", "star"),
@@ -42,7 +44,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"(SORTED){case}-> a:{actual} does not equal e:{expected}")
 
-    def test_1_3(self):
+    def test_1_4(self):
         cases = [
             ("abc", 3),
             ("ab c", 4),
@@ -60,7 +62,7 @@ class CrackingTests(unittest.TestCase):
             expected =  expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a:{actual} does not equal e:{expected}")
 
-    def test_1_4(self):
+    def test_1_5(self):
         cases = [
             "Tact Coa",
             'carr ece',
@@ -76,7 +78,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}: a: {actual}, e: {expected}")
 
-    def test_1_5(self):
+    def test_1_6(self):
         cases = [
             ("pale", "ple"),
             ("pales", "pale"),
@@ -89,7 +91,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a: {actual}, e: {expected}")
 
-    def test_1_6(self):
+    def test_1_7(self):
         cases = ["aabcccccaaa", "abcdee", "aaabbaaac"]
         expected_results = ["a2b1c5a3", "abcdee", "a3b2a3c1"]
         for index, case in enumerate(cases):
@@ -97,7 +99,7 @@ class CrackingTests(unittest.TestCase):
             expected = expected_results[index]
             self.assertEqual(actual, expected, f"{case}, a:{actual}, e:{expected}")
 
-    def test_1_7(self):
+    def test_1_8(self):
         cases = [
             [[1, 2],
             [3, 4]],
@@ -132,7 +134,35 @@ class CrackingTests(unittest.TestCase):
                     for j, column in enumerate(row):
                         self.assertEqual(column, expected[i][j], f"column in row of actual = {actual[i][j]} not expected: {expected[i][j]}")
 
+    def test_1_9(self):
+        cases = [
+            [[1, 2, 0],
+            [2, 4, 7],
+            [3, 6, 8]],
+            [[1,1,1],[2,2,2],[3,0,3]],
+            [[1,1],[0,0]]
+        ]
+        expected_results = [
+            [[0, 0, 0],
+            [2, 4, 0],
+            [3, 6, 0]],
+            [[1, 0, 1], [2, 0, 2], [0, 0, 0]],
+            [[0,0],[0,0]]
+        ]
+        for index, case in enumerate(cases):
+            actual = zero_matrix(case)
+            expected = expected_results[index]
+            for i in range(len(actual)):
+                for j in range(len(actual[0])):
+                    self.assertEqual(actual[i][j], expected[i][j], f"a:{actual[i][j]}, e: {expected[i][j]}, for case: {case}")
 
+    def test_1_10(self):
+        cases = [("waterbottle", "terbottlewa"), ("racecar", "cecarra"), ("a", "b"), ("ab", "a")]
+        expected_results = [True, True, False, False]
+        for index, case in enumerate(cases):
+            actual = isSubstring(case[0], case[1])
+            expected = expected_results[index]
+            self.assertEqual(actual, expected, f"a:{actual}, e:{expected}, {case}")
 
 if __name__ == '__main__':
     unittest.main()
