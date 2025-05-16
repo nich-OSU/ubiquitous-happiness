@@ -10,7 +10,7 @@ from arrays_and_strings.rotate_matrix.main import rotate_matrix
 from arrays_and_strings.zero_matrix.main import zero_matrix
 from arrays_and_strings.isSubstring.main import isSubstring
 
-class CrackingTests(unittest.TestCase):
+class CrackingTests_arrays_and_strings(unittest.TestCase):
 
     def test_1_1_hash(self):
         cases = ["abc", "aabbcc", "abca", "abcdprstp"]
