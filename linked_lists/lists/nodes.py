@@ -7,6 +7,14 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def sizeLinkedList(self):
+        size = 0
+        current = self.head
+        while current is not None:
+            current = current.next
+            size = size + 1
+        return size
+
     def appendToTail(self, data):
         new_node = Node(data)
         # with new_node, check list has any items

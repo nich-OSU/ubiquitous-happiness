@@ -2,6 +2,7 @@ import unittest
 
 from linked_lists.lists.nodes import Node, LinkedList
 from linked_lists.remove_dupes.main import remove_dupes
+from linked_lists.return_kth_to_last.main import return_kth_to_end
 
 class CrackingTests_linked_lists(unittest.TestCase):
 
@@ -27,6 +28,20 @@ class CrackingTests_linked_lists(unittest.TestCase):
             self.assertEqual(ctn_data, cen_data, f"test: {ctn_data} does not equal expected: {cen_data}")
             current_test_node = current_test_node.next
             current_expected_node = current_expected_node.next
+
+    def test_2_2(self):
+        test_list = LinkedList()
+        test_list.appendToStart('a')
+        test_list.appendToTail('b')
+        test_list.appendToTail('c')
+        test_list.appendToTail('d')
+        test_list.appendToTail('e')
+
+        expected_list = {'1':'e', '2':'d', '3':'c', '4':'b', '5':'a'}
+        for i in range(1, 6):
+            actual = return_kth_to_end(test_list, i)
+            expected = expected_list[str(i)]
+            self.assertEqual(actual, expected, f"k:{i} and expected: {expected}")
 
 
 if __name__ == '__main__':
