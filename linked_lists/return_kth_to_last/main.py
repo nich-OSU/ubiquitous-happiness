@@ -1,4 +1,4 @@
-# Create an algorithm to find the kth to lasst element
+# Create an algorithm to find the kth to last element
 # of a singly linked list.
 from linked_lists.lists.nodes import Node, LinkedList
 
