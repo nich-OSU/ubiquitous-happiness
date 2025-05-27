@@ -4,6 +4,7 @@ from linked_lists.lists.nodes import Node, LinkedList
 from linked_lists.remove_dupes.main import remove_dupes
 from linked_lists.return_kth_to_last.main import return_kth_to_end
 from linked_lists.delete_middle_node.main import delete_middle_node
+from linked_lists.partition.main import partition
 
 class CrackingTests_linked_lists(unittest.TestCase):
 
@@ -72,7 +73,31 @@ class CrackingTests_linked_lists(unittest.TestCase):
             self.assertEqual(ctn_data, cen_data, f"test: {ctn_data} does not equal expected: {cen_data}")
             current_test_node = current_test_node.next
             current_expected_node = current_expected_node.next
-        
+
+    def test_2_4(self):
+        pivot = 4
+        test_list = LinkedList()
+        test_list.appendToStart(1)
+        test_list.appendToTail(4)
+        test_list.appendToTail(5)
+        test_list.appendToTail(6)
+        test_list.appendToTail(2)
+        test_list.appendToTail(7)
+        test_list.appendToTail(3)
+        # verify list added
+        # test_list.print_linked_list()
+
+        partition(test_list, pivot)
+        # test_list.print_linked_list()
+
+        expected_list = [1, 2, 3, 4, 5, 6, 7]
+        i = 0
+        c_a_n = test_list.head
+        while c_a_n is not None:
+            # print(c_a_n.data)
+            self.assertEqual(c_a_n.data, expected_list[i], f"{i} partition list does not match indexed expected list" )
+            c_a_n = c_a_n.next
+            i = i + 1
 
 if __name__ == '__main__':
     unittest.main()
