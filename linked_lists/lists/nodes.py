@@ -126,3 +126,12 @@ class LinkedList:
             return
         else:
             current_node.next = current_node.next.next
+
+    def print_linked_list(self):
+        current  = self.head
+        print("-->head:")
+        while current is not None:
+            print(current.data, "-> ")
+            current = current.next
+        print(":tail-->")
+        return
