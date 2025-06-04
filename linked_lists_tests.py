@@ -5,6 +5,7 @@ from linked_lists.remove_dupes.main import remove_dupes
 from linked_lists.return_kth_to_last.main import return_kth_to_end
 from linked_lists.delete_middle_node.main import delete_middle_node
 from linked_lists.partition.main import partition
+from linked_lists.sum_lists.main import sum_lists_rev, sum_lists_fwd
 
 class CrackingTests_linked_lists(unittest.TestCase):
 
@@ -98,6 +99,68 @@ class CrackingTests_linked_lists(unittest.TestCase):
             self.assertEqual(c_a_n.data, expected_list[i], f"{i} partition list does not match indexed expected list" )
             c_a_n = c_a_n.next
             i = i + 1
+
+    def test_2_5(self):
+        test_list_l1 = LinkedList()
+        test_list_l1.appendToTail(7)
+        test_list_l1.appendToTail(1)
+        test_list_l1.appendToTail(6)
+        # test_list_l1.print_linked_list() # REV:7 - 1 - 6 = 617 |\/| FWD: 7 - 1 - 6 = 716
+
+        test_list_l2 = LinkedList()
+        test_list_l2.appendToTail(5)
+        test_list_l2.appendToTail(9)
+        test_list_l2.appendToTail(2)
+        test_list_l2.appendToTail(1)
+        # test_list_l2.print_linked_list() # REV:5 - 9 - 2 - 1 = 1295 |\/| FWD: 5 - 9 - 2 - 1 = 5921
+
+        actual_summed_listREV = sum_lists_rev(test_list_l1, test_list_l2)   # 617 + 1295 = 1912
+        # actual_summed_listREV.print_linked_list()
+
+        actual_summed_listFWD = sum_lists_fwd(test_list_l1, test_list_l2)   # 716 + 5921 = 6637
+
+        expected_summed_l1 = LinkedList()
+        expected_summed_l1.appendToTail(2)
+        expected_summed_l1.appendToTail(1)
+        expected_summed_l1.appendToTail(9)
+        expected_summed_l1.appendToTail(1)  # 2 -> 1 -> 9 -> 1
+
+        expected_summed_l2 = LinkedList()
+        expected_summed_l2.appendToTail(6)
+        expected_summed_l2.appendToTail(6)
+        expected_summed_l2.appendToTail(3)
+        expected_summed_l2.appendToTail(7)  # 6 -> 6 -> 3 -> 7
+
+        # print("actual resulting summed list in REVERSE")
+        # actual_summed_listREV.print_linked_list()
+        # print("expected resulting list in REVERSE")
+        # expected_summed_l1.print_linked_list()
+        cur_anREV = actual_summed_listREV.head
+        cur_enREV = expected_summed_l1.head
+        node = 1
+        while cur_anREV is not None:
+            # print(node, cur_anREV.data, cur_enREV.data)
+            self.assertEqual(cur_anREV.data, cur_enREV.data, f"Reverse, actual_node:{cur_anREV.data} not equal to exp_node: {cur_enREV.data}")
+            cur_anREV = cur_anREV.next
+            cur_enREV = cur_enREV.next
+            node += 1
+
+        # print("actual_summed_listFWD:")
+        # actual_summed_listFWD.print_linked_list()
+        # print("expected resulting list in FWD")
+        # expected_summed_l2.print_linked_list()
+
+        cur_anFWD = actual_summed_listFWD.head
+        cur_enFWD = expected_summed_l2.head
+        node = 1
+        while cur_anFWD is not None:
+            # print(node, cur_anFWD.data, cur_enFWD.data)
+            self.assertEqual(cur_anFWD.data, cur_enFWD.data, f"Forward, actual_node:{cur_anFWD.data} not equal to exp_node:{cur_enFWD.data}")
+            cur_anFWD = cur_anFWD.next
+            cur_enFWD = cur_enFWD.next
+            node += 1
+
+
 
 if __name__ == '__main__':
     unittest.main()
